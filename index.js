@@ -1,21 +1,23 @@
-const express = require("express")
+// Separate the endpoints that begin with /api/posts into a separate Express Router.
 
-const server = express()
-const port = 2020
+const express = require('express');
 
-server.use(express.json())
+const postsRouter = require('./routers/posts-router');
+// const cors = require('cors');
+// server.use(cors());
 
-server.get("/", (req, res) => {
-	res.json({
-		message: "Web API II",
-	})
-})
+const server = express();
+const PORT = 2020;
 
-// CRUD operations below
+server.use(express.json());
+server.use(welcomeRouter);
+server.use(postsRouter);
 
+server.get('/', (req, res) => {
+	res.status(200).json({ message: 'success, server running' })
+  })
+  
 
-
-// Last line
-server.listen(port, () => {
-	console.log(`Server running at http://localhost:${port}`)
-})
+server.listen(PORT, () => {
+  console.log(`\n*** Server running on http://localhost:${PORT} ***\n`);
+});
