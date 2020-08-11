@@ -10,7 +10,7 @@ const server = express();
 const PORT = 2020;
 
 server.use(express.json());
-server.use(welcomeRouter);
+
 server.use(postsRouter);
 
 server.get('/', (req, res) => {
